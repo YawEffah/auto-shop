@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | IKE4THEPEOPLE Auto Sales</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            gold: '#C5A059',
+                            goldPre: '#D4AF37',
+                            black: '#0a0a0a',
+                            dark: '#121212',
+                            gray: '#1f1f1f',
+                            light: '#f4f4f5'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #f4f4f5;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        #scroll-top {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        #scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+
+<body class="flex flex-col min-h-screen">
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu"
+        class="fixed inset-0 z-[60] bg-black/95 transform translate-x-full transition-transform duration-300 md:hidden flex justify-center items-center">
+        <div class="flex flex-col space-y-8 text-center text-2xl font-bold">
+            <a href="index.html" class="mobile-link hover:text-brand-gold transition">Home</a>
+            <a href="about.html" class="mobile-link hover:text-brand-gold transition">Why Us</a>
+            <a href="inventory.html" class="mobile-link hover:text-brand-gold transition">Inventory</a>
+            <a href="contact.html" class="mobile-link text-brand-gold">Contact</a>
+        </div>
+        <button id="close-menu" class="absolute top-6 right-6 text-white text-3xl">
+            <i class="fa-solid fa-times"></i>
+        </button>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="bg-brand-black/90 backdrop-blur-md sticky top-0 z-50 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div
+                    class="w-10 h-10 bg-brand-gold rounded-lg flex items-center justify-center text-black shadow-lg shadow-brand-gold/20 group-hover:scale-105 transition">
+                    <i class="fa-solid fa-car-side text-lg"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-white font-bold text-lg leading-none tracking-tight">IKE<span
+                            class="text-brand-gold">4THEPEOPLE</span></span>
+                </div>
+            </a>
+            <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-300">
+                <a href="index.html" class="hover:text-brand-gold transition">Home</a>
+                <a href="about.html" class="hover:text-brand-gold transition">Why Us</a>
+                <a href="inventory.html" class="hover:text-brand-gold transition">Inventory</a>
+                <a href="contact.html" class="text-brand-gold">Contact</a>
+            </div>
+            <!-- Mobile Toggle -->
+            <button id="open-menu" class="md:hidden text-white text-2xl hover:text-brand-gold transition">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="bg-brand-dark py-12 border-b border-gray-800 relative">
+        <div class="max-w-7xl mx-auto px-6 relative z-10 text-center">
+            <h1 class="text-4xl font-bold text-white mb-2">Get In Touch</h1>
+            <p class="text-gray-400">We are here to help you get your dream car.</p>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-6 py-12 w-full">
+        <div
+            class="bg-brand-gray rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row border border-gray-800">
+
+            <!-- Info Side -->
+            <div class="md:w-5/12 p-10 md:p-12 bg-brand-gold relative flex flex-col justify-between text-brand-black">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6">Contact Info</h2>
+                    <p class="font-medium mb-12 opacity-80">
+                        Reach out to us via phone or email. We reply within 24 hours.
+                    </p>
+
+                    <div class="space-y-8">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-black/10 flex items-center justify-center">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold uppercase opacity-60">Canada / WhatsApp</p>
+                                <p class="font-bold text-lg">+1 (438) 773-XXXX</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-black/10 flex items-center justify-center">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold uppercase opacity-60">Ghana Office</p>
+                                <p class="font-bold text-lg">+233 24 236 2001</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-black/10 flex items-center justify-center">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold uppercase opacity-60">Email</p>
+                                <p class="font-bold text-lg break-all text-sm md:text-lg">kmensahisaac399@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-12 flex gap-4">
+                    <a href="#"
+                        class="w-10 h-10 rounded-full border border-black/20 flex items-center justify-center hover:bg-black hover:text-white transition"><i
+                            class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"
+                        class="w-10 h-10 rounded-full border border-black/20 flex items-center justify-center hover:bg-black hover:text-white transition"><i
+                            class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <!-- Form Side -->
+            <div class="md:w-7/12 p-10 md:p-12">
+                <form>
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-400 mb-2">Name</label>
+                            <input type="text"
+                                class="w-full bg-brand-black border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-brand-gold focus:outline-none transition"
+                                placeholder="Isaac Mensah">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-400 mb-2">Phone</label>
+                            <input type="tel"
+                                class="w-full bg-brand-black border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-brand-gold focus:outline-none transition"
+                                placeholder="+233 ...">
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-xs font-bold uppercase text-gray-400 mb-2">Email</label>
+                        <input type="email"
+                            class="w-full bg-brand-black border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-brand-gold focus:outline-none transition"
+                            placeholder="john@example.com">
+                    </div>
+                    <div class="mb-8">
+                        <label class="block text-xs font-bold uppercase text-gray-400 mb-2">Message</label>
+                        <textarea
+                            class="w-full bg-brand-black border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-brand-gold focus:outline-none transition h-32"
+                            placeholder="I am interested in..."></textarea>
+                    </div>
+                    <button
+                        class="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-brand-gold hover:scale-[1.02] transition transform shadow-lg">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black py-12 border-t border-gray-900 text-sm mt-auto">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-gray-500">
+                &copy; 2026 <span class="text-brand-gold font-bold">Ike4ThePeople</span>. All rights reserved.
+            </div>
+            <div class="flex gap-8 text-gray-400">
+                <a href="privacy.html" class="hover:text-white transition">Privacy Policy</a>
+                <a href="terms.html" class="hover:text-white transition">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll Top Button -->
+    <button id="scroll-top"
+        class="fixed bottom-8 right-8 z-[70] w-12 h-12 glass rounded-full flex items-center justify-center text-brand-gold hover:bg-brand-gold hover:text-black transition-all duration-300 shadow-2xl">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile Menu Logic
+        const btnOpen = document.getElementById('open-menu');
+        const btnClose = document.getElementById('close-menu');
+        const menu = document.getElementById('mobile-menu');
+        const links = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            menu.classList.toggle('translate-x-full');
+        }
+
+        if (btnOpen) btnOpen.addEventListener('click', toggleMenu);
+        if (btnClose) btnClose.addEventListener('click', toggleMenu);
+
+        links.forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+
+        // Scroll Top Logic
+        const scrollTopBtn = document.getElementById('scroll-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+
+</html>

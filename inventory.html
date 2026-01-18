@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory | IKE4THEPEOPLE Auto Sales</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            gold: '#C5A059',
+                            goldPre: '#D4AF37',
+                            black: '#0a0a0a',
+                            dark: '#121212',
+                            gray: '#1f1f1f',
+                            light: '#f4f4f5'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #f4f4f5;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .form-checkbox:checked {
+            background-color: #C5A059;
+            border-color: #C5A059;
+        }
+
+        #scroll-top {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        #scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+
+<body class="flex flex-col min-h-screen">
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu"
+        class="fixed inset-0 z-[60] bg-black/95 transform translate-x-full transition-transform duration-300 md:hidden flex justify-center items-center">
+        <div class="flex flex-col space-y-8 text-center text-2xl font-bold">
+            <a href="index.html" class="mobile-link hover:text-brand-gold transition">Home</a>
+            <a href="about.html" class="mobile-link hover:text-brand-gold transition">Why Us</a>
+            <a href="inventory.html" class="mobile-link text-brand-gold">Inventory</a>
+            <a href="contact.html" class="mobile-link hover:text-brand-gold transition">Contact</a>
+        </div>
+        <button id="close-menu" class="absolute top-6 right-6 text-white text-3xl">
+            <i class="fa-solid fa-times"></i>
+        </button>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="bg-brand-black/90 backdrop-blur-md sticky top-0 z-50 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div
+                    class="w-10 h-10 bg-brand-gold rounded-lg flex items-center justify-center text-black shadow-lg shadow-brand-gold/20 group-hover:scale-105 transition">
+                    <i class="fa-solid fa-car-side text-lg"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-white font-bold text-lg leading-none tracking-tight">IKE<span
+                            class="text-brand-gold">4THEPEOPLE</span></span>
+                </div>
+            </a>
+            <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-300">
+                <a href="index.html" class="hover:text-brand-gold transition">Home</a>
+                <a href="about.html" class="hover:text-brand-gold transition">Why Us</a>
+                <a href="inventory.html" class="text-brand-gold">Inventory</a>
+                <a href="contact.html" class="hover:text-brand-gold transition">Contact</a>
+            </div>
+            <!-- Mobile Toggle -->
+            <button id="open-menu" class="md:hidden text-white text-2xl">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="bg-brand-dark py-12 border-b border-gray-800 relative overflow-hidden">
+        <div
+            class="absolute top-0 right-0 w-64 h-64 bg-brand-gold/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2">
+        </div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <h1 class="text-4xl font-bold text-white mb-2">Current Inventory</h1>
+            <p class="text-gray-400">Browse our selection of premium vehicles ready for export to Ghana.</p>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-6 py-12 flex flex-col lg:flex-row gap-10 w-full">
+
+        <!-- Sidebar Filters -->
+        <aside class="lg:w-1/4">
+            <div class="glass p-6 rounded-2xl sticky top-28">
+                <div class="flex justify-between items-center mb-6 border-b border-gray-800 pb-4">
+                    <h3 class="font-bold text-lg text-white">Filter Vehicles</h3>
+                    <button class="text-xs text-brand-gold hover:text-white transition">Reset</button>
+                </div>
+
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-500 mb-3">Make & Model</label>
+                        <select
+                            class="w-full bg-brand-black border border-gray-700 rounded-lg px-3 py-2 text-sm text-gray-300 focus:border-brand-gold focus:outline-none">
+                            <option>All Makes</option>
+                            <option>Toyota</option>
+                            <option>Honda</option>
+                            <option>Mercedes-Benz</option>
+                            <option>Lexus</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-500 mb-3">Price Range</label>
+                        <input type="range"
+                            class="w-full h-1 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-brand-gold">
+                        <div class="flex justify-between text-xs text-gray-400 mt-2">
+                            <span>$5k</span>
+                            <span>$100k+</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-500 mb-3">Body Type</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center gap-2 cursor-pointer group">
+                                <input type="checkbox"
+                                    class="form-checkbox rounded text-brand-gold bg-gray-800 border-gray-600 focus:ring-0">
+                                <span class="text-sm text-gray-400 group-hover:text-white transition">SUV</span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer group">
+                                <input type="checkbox"
+                                    class="form-checkbox rounded text-brand-gold bg-gray-800 border-gray-600 focus:ring-0">
+                                <span class="text-sm text-gray-400 group-hover:text-white transition">Sedan</span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer group">
+                                <input type="checkbox"
+                                    class="form-checkbox rounded text-brand-gold bg-gray-800 border-gray-600 focus:ring-0">
+                                <span class="text-sm text-gray-400 group-hover:text-white transition">Truck</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button
+                        class="w-full bg-brand-gold text-black font-bold py-3 rounded-lg hover:bg-white transition shadow-lg">
+                        Apply Filters
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Grid -->
+        <main class="lg:w-3/4">
+            <div class="grid md:grid-cols-2 gap-8">
+
+                <!-- Toyota Camry TRD -->
+                <div
+                    class="group bg-brand-gray rounded-2xl overflow-hidden hover:shadow-[0_10px_40px_-10px_rgba(197,160,89,0.1)] transition duration-300 border border-transparent hover:border-gray-700">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="images/camry-trd.jpg"
+                            class="w-full h-full object-cover transition duration-700 group-hover:scale-110"
+                            alt="Toyota Camry TRD">
+                        <div
+                            class="absolute top-4 left-4 bg-brand-gold text-black text-xs font-bold px-3 py-1 rounded-full uppercase">
+                            Available
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-white group-hover:text-brand-gold transition">Toyota
+                                Camry TRD</h3>
+                            <a href="https://wa.me/233242362001" target="_blank"
+                                class="text-gray-400 hover:text-green-500 transition"><i
+                                    class="fa-brands fa-whatsapp text-2xl"></i></a>
+                        </div>
+                        <p class="text-gray-500 text-xs mb-4 uppercase tracking-wider">2022 • 25,000 km • Automatic</p>
+                        <div class="flex justify-between items-center border-t border-gray-800 pt-4">
+                            <span class="font-bold text-xl text-white">$36,000 <span
+                                    class="text-xs text-gray-500 font-normal">CAD</span></span>
+                            <button class="text-sm font-bold text-brand-gold hover:text-white transition">Details <i
+                                    class="fa-solid fa-arrow-right ml-1"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Honda Civic Type R -->
+                <div
+                    class="group bg-brand-gray rounded-2xl overflow-hidden hover:shadow-[0_10px_40px_-10px_rgba(197,160,89,0.1)] transition duration-300 border border-transparent hover:border-gray-700">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="images/civic-type-r.jpg"
+                            class="w-full h-full object-cover transition duration-700 group-hover:scale-110"
+                            alt="Honda Civic Type R">
+                        <div
+                            class="absolute top-4 left-4 bg-brand-gold text-black text-xs font-bold px-3 py-1 rounded-full uppercase">
+                            Available
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-white group-hover:text-brand-gold transition">Honda Civic
+                                Type R</h3>
+                            <a href="https://wa.me/233242362001" target="_blank"
+                                class="text-gray-400 hover:text-green-500 transition"><i
+                                    class="fa-brands fa-whatsapp text-2xl"></i></a>
+                        </div>
+                        <p class="text-gray-500 text-xs mb-4 uppercase tracking-wider">2021 • 35,000 km • AWD</p>
+                        <div class="flex justify-between items-center border-t border-gray-800 pt-4">
+                            <span class="font-bold text-xl text-white">$37,500 <span
+                                    class="text-xs text-gray-500 font-normal">CAD</span></span>
+                            <button class="text-sm font-bold text-brand-gold hover:text-white transition">Details <i
+                                    class="fa-solid fa-arrow-right ml-1"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Honda CRV -->
+                <div
+                    class="group bg-brand-gray rounded-2xl overflow-hidden hover:shadow-[0_10px_40px_-10px_rgba(197,160,89,0.1)] transition duration-300 border border-transparent hover:border-gray-700">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="images/crv.jpg"
+                            class="w-full h-full object-cover transition duration-700 group-hover:scale-110"
+                            alt="Honda CRV">
+                        <div
+                            class="absolute top-4 left-4 bg-brand-gold text-black text-xs font-bold px-3 py-1 rounded-full uppercase">
+                            Available
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-white group-hover:text-brand-gold transition">Honda CRV
+                            </h3>
+                            <a href="https://wa.me/233242362001" target="_blank"
+                                class="text-gray-400 hover:text-green-500 transition"><i
+                                    class="fa-brands fa-whatsapp text-2xl"></i></a>
+                        </div>
+                        <p class="text-gray-500 text-xs mb-4 uppercase tracking-wider">2021 • 28,000 km • Automatic</p>
+                        <div class="flex justify-between items-center border-t border-gray-800 pt-4">
+                            <span class="font-bold text-xl text-white">$45,500 <span
+                                    class="text-xs text-gray-500 font-normal">CAD</span></span>
+                            <button class="text-sm font-bold text-brand-gold hover:text-white transition">Details <i
+                                    class="fa-solid fa-arrow-right ml-1"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Toyota Corolla -->
+                <div
+                    class="group bg-brand-gray rounded-2xl overflow-hidden hover:shadow-[0_10px_40px_-10px_rgba(197,160,89,0.1)] transition duration-300 border border-transparent hover:border-gray-700">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="images/corola.jpg"
+                            class="w-full h-full object-cover transition duration-700 group-hover:scale-110"
+                            alt="Toyota Corolla">
+                        <div
+                            class="absolute top-4 left-4 bg-brand-gold text-black text-xs font-bold px-3 py-1 rounded-full uppercase">
+                            Available
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-white group-hover:text-brand-gold transition">Toyota
+                                Corolla</h3>
+                            <a href="https://wa.me/233242362001" target="_blank"
+                                class="text-gray-400 hover:text-green-500 transition"><i
+                                    class="fa-brands fa-whatsapp text-2xl"></i></a>
+                        </div>
+                        <p class="text-gray-500 text-xs mb-4 uppercase tracking-wider">2023 • 12,000 km • Hybrid</p>
+                        <div class="flex justify-between items-center border-t border-gray-800 pt-4">
+                            <span class="font-bold text-xl text-white">$20,000 <span
+                                    class="text-xs text-gray-500 font-normal">CAD</span></span>
+                            <button class="text-sm font-bold text-brand-gold hover:text-white transition">Details <i
+                                    class="fa-solid fa-arrow-right ml-1"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Honda Accord -->
+                <div
+                    class="group bg-brand-gray rounded-2xl overflow-hidden hover:shadow-[0_10px_40px_-10px_rgba(197,160,89,0.1)] transition duration-300 border border-transparent hover:border-gray-700">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="images/accord.jpg"
+                            class="w-full h-full object-cover transition duration-700 group-hover:scale-110"
+                            alt="Honda Accord">
+                        <div
+                            class="absolute top-4 left-4 bg-brand-gold text-black text-xs font-bold px-3 py-1 rounded-full uppercase">
+                            Available
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-white group-hover:text-brand-gold transition">Honda Accord
+                            </h3>
+                            <a href="https://wa.me/233242362001" target="_blank"
+                                class="text-gray-400 hover:text-green-500 transition"><i
+                                    class="fa-brands fa-whatsapp text-2xl"></i></a>
+                        </div>
+                        <p class="text-gray-500 text-xs mb-4 uppercase tracking-wider">2019 • 50,000 km • Automatic</p>
+                        <div class="flex justify-between items-center border-t border-gray-800 pt-4">
+                            <span class="font-bold text-xl text-white">$21,000 <span
+                                    class="text-xs text-gray-500 font-normal">CAD</span></span>
+                            <button class="text-sm font-bold text-brand-gold hover:text-white transition">Details <i
+                                    class="fa-solid fa-arrow-right ml-1"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Toyota Vitz (Sold) -->
+                <div
+                    class="group bg-brand-gray rounded-2xl overflow-hidden opacity-75 hover:opacity-100 transition duration-300 border border-transparent">
+                    <div
+                        class="relative h-64 overflow-hidden grayscale group-hover:grayscale-0 transition duration-500">
+                        <img src="images/vitz.jpg"
+                            class="w-full h-full object-cover transition duration-700 group-hover:scale-110"
+                            alt="Toyota Vitz">
+                        <div
+                            class="absolute top-4 left-4 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">
+                            Sold
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-white">Toyota Vitz</h3>
+                        </div>
+                        <p class="text-gray-500 text-xs mb-4 uppercase tracking-wider">2022 • 18,000 km • Automatic</p>
+                        <div class="flex justify-between items-center border-t border-gray-800 pt-4">
+                            <span class="font-bold text-xl text-gray-500 line-through">$12,000</span>
+                            <span class="text-sm font-bold text-red-500 uppercase">Sold Out</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Pagination -->
+            <div class="mt-12 flex justify-center gap-3">
+                <button
+                    class="w-10 h-10 rounded-lg border border-gray-700 text-gray-400 hover:bg-white hover:text-black transition flex items-center justify-center">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button
+                    class="w-10 h-10 rounded-lg bg-brand-gold text-black font-bold flex items-center justify-center">1</button>
+                <button
+                    class="w-10 h-10 rounded-lg border border-gray-700 text-gray-400 hover:bg-white hover:text-black transition flex items-center justify-center">2</button>
+                <button
+                    class="w-10 h-10 rounded-lg border border-gray-700 text-gray-400 hover:bg-white hover:text-black transition flex items-center justify-center">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black py-12 border-t border-gray-900 text-sm mt-auto">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-gray-500">
+                &copy; 2026 <span class="text-brand-gold font-bold">Ike4ThePeople</span>. All rights reserved.
+            </div>
+            <div class="flex gap-8 text-gray-400">
+                <a href="privacy.html" class="hover:text-white transition">Privacy Policy</a>
+                <a href="terms.html" class="hover:text-white transition">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll Top Button -->
+    <button id="scroll-top"
+        class="fixed bottom-8 right-8 z-[70] w-12 h-12 glass rounded-full flex items-center justify-center text-brand-gold hover:bg-brand-gold hover:text-black transition-all duration-300 shadow-2xl">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile Menu Logic
+        const btnOpen = document.getElementById('open-menu');
+        const btnClose = document.getElementById('close-menu');
+        const menu = document.getElementById('mobile-menu');
+        const links = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            menu.classList.toggle('translate-x-full');
+        }
+
+        if (btnOpen) btnOpen.addEventListener('click', toggleMenu);
+        if (btnClose) btnClose.addEventListener('click', toggleMenu);
+
+        links.forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+
+        // Scroll Top Logic
+        const scrollTopBtn = document.getElementById('scroll-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | IKE4THEPEOPLE Auto Sales</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            gold: '#C5A059',
+                            goldPre: '#D4AF37',
+                            black: '#0a0a0a',
+                            dark: '#121212',
+                            gray: '#1f1f1f',
+                            light: '#f4f4f5'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #f4f4f5;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        #scroll-top {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        #scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+
+<body class="flex flex-col min-h-screen">
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu"
+        class="fixed inset-0 z-[60] bg-black/95 transform translate-x-full transition-transform duration-300 md:hidden flex justify-center items-center">
+        <div class="flex flex-col space-y-8 text-center text-2xl font-bold">
+            <a href="index.html" class="mobile-link hover:text-brand-gold transition">Home</a>
+            <a href="about.html" class="mobile-link text-brand-gold transition">Why Us</a>
+            <a href="inventory.html" class="mobile-link hover:text-brand-gold transition">Inventory</a>
+            <a href="contact.html" class="mobile-link hover:text-brand-gold transition">Contact</a>
+        </div>
+        <button id="close-menu" class="absolute top-6 right-6 text-white text-3xl">
+            <i class="fa-solid fa-times"></i>
+        </button>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="bg-brand-black/90 backdrop-blur-md sticky top-0 z-50 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div
+                    class="w-10 h-10 bg-brand-gold rounded-lg flex items-center justify-center text-black shadow-lg shadow-brand-gold/20 group-hover:scale-105 transition">
+                    <i class="fa-solid fa-car-side text-lg"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-white font-bold text-lg leading-none tracking-tight">IKE<span
+                            class="text-brand-gold">4THEPEOPLE</span></span>
+                </div>
+            </a>
+            <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-300">
+                <a href="index.html" class="hover:text-brand-gold transition">Home</a>
+                <a href="about.html" class="text-brand-gold">Why Us</a>
+                <a href="inventory.html" class="hover:text-brand-gold transition">Inventory</a>
+                <a href="contact.html" class="hover:text-brand-gold transition">Contact</a>
+            </div>
+            <!-- Mobile Toggle -->
+            <button id="open-menu" class="md:hidden text-white text-2xl">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="bg-brand-dark py-16 relative overflow-hidden">
+        <div
+            class="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-brand-gold/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2">
+        </div>
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Bridging Continents</h1>
+            <p class="text-xl text-gray-400 leading-relaxed">Connecting Canadian Quality with Ghanaian Roads. We are
+                more than a dealership; we are your logistics partner.</p>
+        </div>
+    </header>
+
+    <!-- Image & Text Section -->
+    <section class="py-20 bg-brand-black">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            <div class="relative">
+                <div class="absolute -inset-4 bg-brand-gold/20 rounded-2xl blur-lg"></div>
+                <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    class="relative rounded-2xl shadow-2xl border border-gray-800 w-full h-auto">
+            </div>
+            <div>
+                <h2 class="text-3xl font-bold text-white mb-6">Our Mission</h2>
+                <div class="space-y-6 text-gray-400">
+                    <p class="leading-relaxed">
+                        <strong class="text-white">Ike4ThePeople Auto Sales</strong> was founded on a simple principle:
+                        Integrity. We recognized the challenges many faced when importing vehicles—lack of transparency,
+                        hidden costs, and unforeseen quality issues.
+                    </p>
+                    <p class="leading-relaxed">
+                        With operations grounded in Canada and deep roots in Ghana, we offer a seamless end-to-end
+                        service. From scouting the best vehicles at Canadian auctions to ensuring they clear customs in
+                        Tema or Takoradi tailored to your specifications.
+                    </p>
+                </div>
+
+                <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="flex items-center gap-3 p-4 bg-brand-gray rounded-xl border border-gray-800">
+                        <i class="fa-solid fa-shield-halved text-brand-gold text-xl"></i>
+                        <span class="text-sm font-bold text-white">Registered Dealer</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-4 bg-brand-gray rounded-xl border border-gray-800">
+                        <i class="fa-solid fa-wrench text-brand-gold text-xl"></i>
+                        <span class="text-sm font-bold text-white">Mechanical Check</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="py-20 bg-brand-dark">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-sm font-bold text-brand-gold uppercase tracking-widest mb-2">The Process</h2>
+                <h3 class="text-3xl font-bold text-white">How We Work</h3>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Step 1 -->
+                <div class="group relative text-center">
+                    <div
+                        class="w-20 h-20 mx-auto bg-brand-gray rounded-full flex items-center justify-center border border-gray-700 mb-6 group-hover:border-brand-gold group-hover:bg-brand-gold/10 transition">
+                        <span class="text-2xl font-bold text-brand-gold">01</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-3">Selection</h3>
+                    <p class="text-sm text-gray-500">Choose from inventory or custom order your specific make.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="group relative text-center">
+                    <div
+                        class="w-20 h-20 mx-auto bg-brand-gray rounded-full flex items-center justify-center border border-gray-700 mb-6 group-hover:border-brand-gold group-hover:bg-brand-gold/10 transition">
+                        <span class="text-2xl font-bold text-brand-gold">02</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-3">Payment</h3>
+                    <p class="text-sm text-gray-500">Transparent invoicing. Secure bank transfers.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="group relative text-center">
+                    <div
+                        class="w-20 h-20 mx-auto bg-brand-gray rounded-full flex items-center justify-center border border-gray-700 mb-6 group-hover:border-brand-gold group-hover:bg-brand-gold/10 transition">
+                        <span class="text-2xl font-bold text-brand-gold">03</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-3">Logistics</h3>
+                    <p class="text-sm text-gray-500">We handle shipping, documentation, and container loading.</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="group relative text-center">
+                    <div
+                        class="w-20 h-20 mx-auto bg-brand-gray rounded-full flex items-center justify-center border border-gray-700 mb-6 group-hover:border-brand-gold group-hover:bg-brand-gold/10 transition">
+                        <span class="text-2xl font-bold text-brand-gold">04</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-3">Delivery</h3>
+                    <p class="text-sm text-gray-500">Pick up your vehicle at the port with ease.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="py-20 bg-brand-black">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-sm font-bold text-brand-gold uppercase tracking-widest mb-2">Our People</h2>
+                <h3 class="text-3xl font-bold text-white">Meet The Team</h3>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Team Member 1 -->
+                <div class="group relative">
+                    <div class="relative h-96 rounded-2xl overflow-hidden mb-6 border border-gray-800">
+                        <img src="images/ike.jpeg"
+                            class="w-full h-full object-cover transition duration-500 group-hover:scale-110"
+                            alt="Ike Mensah">
+                        <div class="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/90 to-transparent">
+                            <h4 class="text-xl font-bold text-white">Isaac Mensah</h4>
+                            <p class="text-brand-gold font-medium">Founder & CEO</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed px-2">
+                        Leading the vision to provide high-quality Canadian vehicles to the Ghanaian market with 100%
+                        transparency.
+                    </p>
+                </div>
+
+                <!-- Team Member 2 -->
+                <div class="group relative">
+                    <div class="relative h-96 rounded-2xl overflow-hidden mb-6 border border-gray-800">
+                        <img src="images/user.png"
+                            class="w-full h-full object-cover transition duration-500 group-hover:scale-110"
+                            alt="Sarah Boateng">
+                        <div class="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/90 to-transparent">
+                            <h4 class="text-xl font-bold text-white">Sarah Boateng</h4>
+                            <p class="text-brand-gold font-medium">Logistics Manager (Ghana)</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed px-2">
+                        Expert in clearing and forwarding at Tema port, ensuring your vehicle is cleared swiftly and
+                        safely.
+                    </p>
+                </div>
+
+                <!-- Team Member 3 -->
+                <div class="group relative">
+                    <div class="relative h-96 rounded-2xl overflow-hidden mb-6 border border-gray-800">
+                        <img src="images/user.png"
+                            class="w-full h-full object-cover transition duration-500 group-hover:scale-110"
+                            alt="David Larbi">
+                        <div class="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/90 to-transparent">
+                            <h4 class="text-xl font-bold text-white">David Larbi</h4>
+                            <p class="text-brand-gold font-medium">Sales Executive (Canada)</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed px-2">
+                        Scouts the finest vehicles from Canadian auctions, performing rigorous multi-point mechanical
+                        checks.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-12 border-t border-gray-900 text-sm mt-auto">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-gray-500">
+                &copy; 2026 <span class="text-brand-gold font-bold">Ike4ThePeople</span>. All rights reserved.
+            </div>
+            <div class="flex gap-8 text-gray-400">
+                <a href="privacy.html" class="hover:text-white transition">Privacy Policy</a>
+                <a href="terms.html" class="hover:text-white transition">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll Top Button -->
+    <button id="scroll-top"
+        class="fixed bottom-8 right-8 z-[70] w-12 h-12 glass rounded-full flex items-center justify-center text-brand-gold hover:bg-brand-gold hover:text-black transition-all duration-300 shadow-2xl">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile Menu Logic
+        const btnOpen = document.getElementById('open-menu');
+        const btnClose = document.getElementById('close-menu');
+        const menu = document.getElementById('mobile-menu');
+        const links = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            menu.classList.toggle('translate-x-full');
+        }
+
+        if (btnOpen) btnOpen.addEventListener('click', toggleMenu);
+        if (btnClose) btnClose.addEventListener('click', toggleMenu);
+
+        links.forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+
+        // Scroll Top Logic
+        const scrollTopBtn = document.getElementById('scroll-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+
+</html>

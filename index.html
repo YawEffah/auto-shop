@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IKE4THEPEOPLE Auto Sales | Premium Cars Canada to Ghana</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            gold: '#C5A059',
+                            goldPre: '#D4AF37',
+                            black: '#0a0a0a',
+                            dark: '#121212',
+                            gray: '#1f1f1f',
+                            light: '#f4f4f5'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "linear-gradient(to bottom, rgba(10,10,10,0.4), rgba(10,10,10,0.9)), url('https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #f4f4f5;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .glass-nav {
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #C5A059;
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #ffffff, #C5A059);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: shine 5s linear infinite;
+        }
+
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        #scroll-top {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        #scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-brand-gold selection:text-black">
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu"
+        class="fixed inset-0 z-[60] bg-black/95 transform translate-x-full transition-transform duration-300 md:hidden flex justify-center items-center">
+        <div class="flex flex-col space-y-8 text-center text-2xl font-bold">
+            <a href="#home" class="mobile-link text-brand-gold transition">Home</a>
+            <a href="#about" class="mobile-link hover:text-brand-gold transition">Services</a>
+            <a href="about.html" class="mobile-link hover:text-brand-gold transition">About Us</a>
+            <a href="#inventory" class="mobile-link hover:text-brand-gold transition">Inventory</a>
+            <a href="#contact" class="mobile-link hover:text-brand-gold transition">Contact Us</a>
+        </div>
+        <button id="close-menu" class="absolute top-6 right-6 text-white text-3xl">
+            <i class="fa-solid fa-times"></i>
+        </button>
+    </div>
+
+    <!-- Normalize Navbar -->
+    <nav class="fixed w-full z-50 transition-all duration-300 border-b border-transparent" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div
+                    class="w-10 h-10 bg-brand-gold rounded-lg flex items-center justify-center text-black shadow-lg shadow-brand-gold/20 group-hover:scale-105 transition">
+                    <i class="fa-solid fa-car-side text-lg"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-white font-bold text-lg leading-none tracking-tight">IKE<span
+                            class="text-brand-gold">4THEPEOPLE</span></span>
+                    <span class="text-gray-400 text-[10px] tracking-widest uppercase">Auto Sales</span>
+                </div>
+            </a>
+
+            <!-- Desktop Links -->
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-300">
+                <a href="#home" class="text-brand-gold group">
+                    Home
+                    <span
+                        class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-gold transition-all group-hover:w-full"></span>
+                </a>
+                <a href="#about" class="hover:text-brand-gold transition relative group">
+                    Services
+                    <span
+                        class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-gold transition-all group-hover:w-full"></span>
+                </a>
+                <a href="about.html" class="hover:text-brand-gold transition relative group">
+                    About Us
+                    <span
+                        class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-gold transition-all group-hover:w-full"></span>
+                </a>
+                <a href="#inventory" class="hover:text-brand-gold transition relative group">
+                    Inventory
+                    <span
+                        class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-gold transition-all group-hover:w-full"></span>
+                </a>
+            </div>
+
+            <!-- CTA -->
+            <div class="hidden md:block">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScssqkiT7gPqLexlnLwGulYE91EYtxfmof1M9APgzTrCG4qzQ/viewform"
+                    target="_blank"
+                    class="px-6 py-2.5 bg-brand-gold hover:bg-white text-black font-bold rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(197,160,89,0.3)] hover:shadow-[0_0_25px_rgba(255,255,255,0.4)] text-sm">
+                    Get a Quote
+                </a>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button id="open-menu" class="md:hidden text-white text-2xl hover:text-brand-gold transition">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home"
+        class="h-screen bg-hero-pattern bg-cover bg-center bg-fixed flex items-center relative overflow-hidden">
+
+        <!-- Ambient Glow -->
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-gold/10 rounded-full blur-3xl pointer-events-none">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10 w-full">
+            <div class="pt-20">
+                <div
+                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gray-700 bg-black/40 backdrop-blur-sm mb-6 gs-reveal">
+                    <span class="w-2 h-2 rounded-full bg-brand-gold animate-pulse"></span>
+                    <span class="text-xs font-semibold text-gray-300 tracking-wider uppercase">Direct Canada to Ghana
+                        Shipping</span>
+                </div>
+
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight text-white gs-reveal">
+                    Drive the <br />
+                    <span class="text-gradient">Extraordinary.</span>
+                </h1>
+
+                <p class="text-gray-400 text-lg mb-8 max-w-lg leading-relaxed gs-reveal">
+                    We bridge the gap between premium Canadian vehicles and Ghanaian roads. Trusted by individuals and
+                    businesses for quality, transparency, and speed.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 gs-reveal">
+                    <a href="#inventory"
+                        class="px-8 py-4 bg-brand-gold text-black font-bold rounded-full hover:bg-white transition-all shadow-[0_4px_20px_rgba(197,160,89,0.3)] text-center">
+                        View Inventory
+                    </a>
+                    <a href="#contact"
+                        class="px-8 py-4 border border-gray-600 text-white font-bold rounded-full hover:bg-gray-800 hover:border-gray-500 transition-all text-center">
+                        Contact Us
+                    </a>
+                </div>
+
+                <div class="mt-12 flex items-center gap-8 text-gray-500 text-sm gs-reveal">
+                    <div>
+                        <p class="text-white font-bold text-xl">50+</p>
+                        <p>Cars Shipped</p>
+                    </div>
+                    <div class="w-px h-10 bg-gray-800"></div>
+                    <div>
+                        <p class="text-white font-bold text-xl">100%</p>
+                        <p>Verified Stock</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-brand-gold animate-bounce">
+            <i class="fa-solid fa-chevron-down opacity-50"></i>
+        </div>
+    </section>
+
+    <!-- Services / Value Prop -->
+    <section id="about" class="py-24 bg-brand-black relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 max-w-2xl mx-auto">
+                <h2 class="text-sm font-bold text-brand-gold uppercase tracking-widest mb-2">Why Choose Us</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-white mb-4">Seamless Import Experience</h3>
+                <p class="text-gray-400">We handle the complexities of international vehicle logistics so you don't have
+                    to.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div
+                    class="feature-card glass p-8 rounded-2xl hover:bg-white/5 transition duration-500 group border-t-2 border-transparent hover:border-brand-gold">
+                    <div
+                        class="w-14 h-14 bg-brand-gray rounded-xl flex items-center justify-center text-2xl text-brand-gold mb-6 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-plane-departure"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-4">Canada to Ghana</h4>
+                    <p class="text-gray-500 leading-relaxed group-hover:text-gray-400 transition">
+                        Specialized logistics network ensuring your vehicle arrives safely and on time from Canadian
+                        ports to Tema/Takoradi.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div
+                    class="feature-card glass p-8 rounded-2xl hover:bg-white/5 transition duration-500 group border-t-2 border-transparent hover:border-brand-gold">
+                    <div
+                        class="w-14 h-14 bg-brand-gray rounded-xl flex items-center justify-center text-2xl text-brand-gold mb-6 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-magnifying-glass-dollar"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-4">Transparent Pricing</h4>
+                    <p class="text-gray-500 leading-relaxed group-hover:text-gray-400 transition">
+                        No hidden fees. We provide clear quotes including purchase, shipping, and estimated clearing
+                        costs.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div
+                    class="feature-card glass p-8 rounded-2xl hover:bg-white/5 transition duration-500 group border-t-2 border-transparent hover:border-brand-gold">
+                    <div
+                        class="w-14 h-14 bg-brand-gray rounded-xl flex items-center justify-center text-2xl text-brand-gold mb-6 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-certificate"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-4">Quality Verified</h4>
+                    <p class="text-gray-500 leading-relaxed group-hover:text-gray-400 transition">
+                        Every vehicle undergoes a rigorous inspection. We don't ship "As Is". We ship "Ready to Drive".
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inventory Section -->
+    <section id="inventory" class="py-24 bg-brand-dark">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
+                <div>
+                    <h2 class="text-sm font-bold text-brand-gold uppercase tracking-widest mb-2">Our Inventory</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold text-white">Latest Arrivals</h3>
+                </div>
+                <a href="inventory.html"
+                    class="text-white hover:text-brand-gold transition text-sm font-bold flex items-center gap-2">
+                    View All Cars <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Car Item 1: Highlander -->
+                <div
+                    class="group bg-brand-gray rounded-2xl overflow-hidden hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] transition duration-300">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="images/camry-trd.jpg"
+                            class="w-full h-full object-cover transition duration-700 group-hover:scale-110"
+                            alt="Toyota Camry TRD">
+                        <div
+                            class="absolute top-4 left-4 bg-black/60 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full uppercase">
+                            Sedan
+                        </div>
+                        <div
+                            class="absolute bottom-4 right-4 bg-brand-gold text-black text-sm font-bold px-4 py-2 rounded-lg shadow-lg">
+                            $36,000
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold text-white mb-2 group-hover:text-brand-gold transition">Toyota
+                            Camry TRD</h4>
+                        <div class="flex items-center gap-4 text-gray-400 text-xs mb-6 border-b border-gray-700 pb-4">
+                            <span class="flex items-center gap-1"><i class="fa-solid fa-gauge"></i> 12k km</span>
+                            <span class="flex items-center gap-1"><i class="fa-solid fa-gear"></i> Auto</span>
+                            <span class="flex items-center gap-1"><i class="fa-solid fa-gas-pump"></i> Hybrid</span>
+                        </div>
+                        <button
+                            class="w-full py-3 rounded-xl border border-gray-600 text-gray-300 font-bold hover:bg-white hover:text-black hover:border-white transition">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Car Item 2: Civic -->
+                <div
+                    class="group bg-brand-gray rounded-2xl overflow-hidden hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] transition duration-300">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="images/civic-type-r.jpg"
+                            class="w-full h-full object-cover transition duration-700 group-hover:scale-110"
+                            alt="Honda Civic">
+                        <div
+                            class="absolute top-4 left-4 bg-black/60 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full uppercase">
+                            Sedan
+                        </div>
+                        <div
+                            class="absolute bottom-4 right-4 bg-brand-gold text-black text-sm font-bold px-4 py-2 rounded-lg shadow-lg">
+                            $37,500
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold text-white mb-2 group-hover:text-brand-gold transition">Honda Civic
+                            Type R
+                        </h4>
+                        <div class="flex items-center gap-4 text-gray-400 text-xs mb-6 border-b border-gray-700 pb-4">
+                            <span class="flex items-center gap-1"><i class="fa-solid fa-gauge"></i> 28k km</span>
+                            <span class="flex items-center gap-1"><i class="fa-solid fa-gear"></i> Auto</span>
+                            <span class="flex items-center gap-1"><i class="fa-solid fa-gas-pump"></i> Petrol</span>
+                        </div>
+                        <button
+                            class="w-full py-3 rounded-xl border border-gray-600 text-gray-300 font-bold hover:bg-white hover:text-black hover:border-white transition">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Car Item 3: Honda CRV -->
+                <div
+                    class="group bg-brand-gray rounded-2xl overflow-hidden hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] transition duration-300">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="images/crv.jpg"
+                            class="w-full h-full object-cover transition duration-700 group-hover:scale-110"
+                            alt="Honda CRV">
+                        <div
+                            class="absolute top-4 left-4 bg-black/60 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full uppercase">
+                            SUV
+                        </div>
+                        <div
+                            class="absolute bottom-4 right-4 bg-brand-gold text-black text-sm font-bold px-4 py-2 rounded-lg shadow-lg">
+                            $45,500
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold text-white mb-2 group-hover:text-brand-gold transition">Honda
+                            CRV</h4>
+                        <div class="flex items-center gap-4 text-gray-400 text-xs mb-6 border-b border-gray-700 pb-4">
+                            <span class="flex items-center gap-1"><i class="fa-solid fa-gauge"></i> 25k km</span>
+                            <span class="flex items-center gap-1"><i class="fa-solid fa-gear"></i> Auto</span>
+                            <span class="flex items-center gap-1"><i class="fa-solid fa-gas-pump"></i> Petrol</span>
+                        </div>
+                        <button
+                            class="w-full py-3 rounded-xl border border-gray-600 text-gray-300 font-bold hover:bg-white hover:text-black hover:border-white transition">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-24 bg-brand-dark/50 relative overflow-hidden">
+        <div
+            class="absolute top-0 right-0 w-96 h-96 bg-brand-gold/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2">
+        </div>
+        <div
+            class="absolute bottom-0 left-0 w-96 h-96 bg-brand-gold/5 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <span
+                    class="text-brand-gold font-bold tracking-widest uppercase text-sm mb-4 block gs-testimonial">Testimonials</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 gs-testimonial">What Our Clients Say</h2>
+                <div class="w-20 h-1 bg-brand-gold mx-auto gs-testimonial"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="glass p-8 rounded-2xl border border-gray-800 gs-testimonial">
+                    <div class="flex text-brand-gold mb-6">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 italic mb-8">"Ike made the process of shipping my Toyota Camry to Accra so
+                        seamless. Everything arrived in perfect condition, and the communication was top-notch
+                        throughout."</p>
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="w-12 h-12 rounded-full bg-brand-gray flex items-center justify-center text-brand-gold font-bold border border-brand-gold/30">
+                            KM
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold">Kofi Mensah</h4>
+                            <p class="text-gray-500 text-xs">Accra, Ghana</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="glass p-8 rounded-2xl border border-gray-800 gs-testimonial">
+                    <div class="flex text-brand-gold mb-6">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 italic mb-8">"Providing premium cars at honest prices is hard to find.
+                        Ike4ThePeople delivered exactly what they promised. My Honda CRV is running perfectly."</p>
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="w-12 h-12 rounded-full bg-brand-gray flex items-center justify-center text-brand-gold font-bold border border-brand-gold/30">
+                            AO
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold">Abena Owusu</h4>
+                            <p class="text-gray-500 text-xs">Kumasi, Ghana</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="glass p-8 rounded-2xl border border-gray-800 gs-testimonial">
+                    <div class="flex text-brand-gold mb-6">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 italic mb-8">"The best car export service from Canada. They handled all the
+                        paperwork and clearing. I highly recommend them to anyone looking for a reliable car."</p>
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="w-12 h-12 rounded-full bg-brand-gray flex items-center justify-center text-brand-gold font-bold border border-brand-gold/30">
+                            SL
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold">Samuel Larbi</h4>
+                            <p class="text-gray-500 text-xs">Tema, Ghana</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 bg-brand-black relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <span
+                    class="text-brand-gold font-bold tracking-widest uppercase text-sm mb-4 block gs-reveal">FAQ</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 gs-reveal">Common Questions</h2>
+                <div class="w-20 h-1 bg-brand-gold mx-auto gs-reveal"></div>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="glass rounded-2xl border border-gray-800 overflow-hidden gs-reveal">
+                    <button class="w-full p-6 text-left flex justify-between items-center group"
+                        onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('i').classList.toggle('rotate-180')">
+                        <span class="text-lg font-bold text-white group-hover:text-brand-gold transition">How long does
+                            shipping take from Canada to Ghana?</span>
+                        <i class="fa-solid fa-chevron-down text-brand-gold transition-transform duration-300"></i>
+                    </button>
+                    <div class="px-6 pb-6 text-gray-400 hidden">
+                        Typically, shipping takes between 4 to 6 weeks from the date of departure at the Canadian port.
+                        We provide regular updates as your vehicle moves through international waters.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="glass rounded-2xl border border-gray-800 overflow-hidden gs-reveal">
+                    <button class="w-full p-6 text-left flex justify-between items-center group"
+                        onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('i').classList.toggle('rotate-180')">
+                        <span class="text-lg font-bold text-white group-hover:text-brand-gold transition">Do you handle
+                            the clearing process at the port?</span>
+                        <i class="fa-solid fa-chevron-down text-brand-gold transition-transform duration-300"></i>
+                    </button>
+                    <div class="px-6 pb-6 text-gray-400 hidden">
+                        Yes, we offer a comprehensive service that includes handling all customs documentation and the
+                        clearing process at Tema or Takoradi ports, ensuring a stress-free experience for you.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="glass rounded-2xl border border-gray-800 overflow-hidden gs-reveal">
+                    <button class="w-full p-6 text-left flex justify-between items-center group"
+                        onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('i').classList.toggle('rotate-180')">
+                        <span class="text-lg font-bold text-white group-hover:text-brand-gold transition">What payment
+                            methods do you accept?</span>
+                        <i class="fa-solid fa-chevron-down text-brand-gold transition-transform duration-300"></i>
+                    </button>
+                    <div class="px-6 pb-6 text-gray-400 hidden">
+                        We accept bank transfers (CAD/USD/GHS), wire transfers, and secured online payments. We provide
+                        official invoices for every transaction to ensure full transparency.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="glass rounded-2xl border border-gray-800 overflow-hidden gs-reveal">
+                    <button class="w-full p-6 text-left flex justify-between items-center group"
+                        onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('i').classList.toggle('rotate-180')">
+                        <span class="text-lg font-bold text-white group-hover:text-brand-gold transition">Can I request
+                            a specific car that is not in your inventory?</span>
+                        <i class="fa-solid fa-chevron-down text-brand-gold transition-transform duration-300"></i>
+                    </button>
+                    <div class="px-6 pb-6 text-gray-400 hidden">
+                        Absolutely! We specialize in custom sourcing. Tell us your desired make, model, year, and
+                        budget, and our Canadian team will find the best options for you.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-brand-black relative overflow-hidden">
+        <!-- Decoration -->
+        <div class="absolute right-0 bottom-0 w-1/3 h-full bg-brand-gold/5 skew-x-12 pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div
+                class="bg-brand-gray rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row border border-gray-800">
+
+                <!-- Info Side -->
+                <div
+                    class="md:w-5/12 p-10 md:p-12 bg-brand-gold relative flex flex-col justify-between text-brand-black">
+                    <div>
+                        <h2 class="text-3xl font-bold mb-6">Get in Touch</h2>
+                        <p class="font-medium mb-12 opacity-80">
+                            Ready to import your dream car? Fill out the form or contact us directly. We reply within 24
+                            hours.
+                        </p>
+
+                        <div class="space-y-8">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-black/10 flex items-center justify-center">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold uppercase opacity-60">Canada / WhatsApp</p>
+                                    <p class="font-bold text-lg">+1 (438) 773-XXXX</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-black/10 flex items-center justify-center">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold uppercase opacity-60">Ghana Office</p>
+                                    <p class="font-bold text-lg">+233 24 236 2001</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-black/10 flex items-center justify-center">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold uppercase opacity-60">Email</p>
+                                    <p class="font-bold text-lg break-all text-sm md:text-lg">kmensahisaac399@gmail.com
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-12 flex gap-4">
+                        <a href="#"
+                            class="w-10 h-10 rounded-full border border-black/20 flex items-center justify-center hover:bg-black hover:text-white transition"><i
+                                class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full border border-black/20 flex items-center justify-center hover:bg-black hover:text-white transition"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full border border-black/20 flex items-center justify-center hover:bg-black hover:text-white transition"><i
+                                class="fa-brands fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <!-- Form Side -->
+                <div class="md:w-7/12 p-10 md:p-12">
+                    <form>
+                        <div class="grid md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-gray-400 mb-2">Name</label>
+                                <input type="text"
+                                    class="w-full bg-brand-black border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-brand-gold focus:outline-none transition"
+                                    placeholder="Isaac Mensah">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-gray-400 mb-2">Phone</label>
+                                <input type="tel"
+                                    class="w-full bg-brand-black border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-brand-gold focus:outline-none transition"
+                                    placeholder="+233 ...">
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-xs font-bold uppercase text-gray-400 mb-2">Email</label>
+                            <input type="email"
+                                class="w-full bg-brand-black border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-brand-gold focus:outline-none transition"
+                                placeholder="john@example.com">
+                        </div>
+                        <div class="mb-8">
+                            <label class="block text-xs font-bold uppercase text-gray-400 mb-2">Message</label>
+                            <textarea
+                                class="w-full bg-brand-black border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-brand-gold focus:outline-none transition h-32"
+                                placeholder="I am interested in..."></textarea>
+                        </div>
+                        <button
+                            class="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-brand-gold hover:scale-[1.02] transition transform shadow-lg">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black py-12 border-t border-gray-900 text-sm">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-gray-500">
+                &copy; 2026 <span class="text-brand-gold font-bold">Ike4ThePeople</span>. All rights reserved.
+            </div>
+            <div class="flex gap-8 text-gray-400">
+                <a href="privacy.html" class="hover:text-white transition">Privacy Policy</a>
+                <a href="terms.html" class="hover:text-white transition">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll Top Button -->
+    <button id="scroll-top"
+        class="fixed bottom-8 right-8 z-[70] w-12 h-12 glass rounded-full flex items-center justify-center text-brand-gold hover:bg-brand-gold hover:text-black transition-all duration-300 shadow-2xl">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Navbar Styles on Scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('glass-nav');
+                navbar.classList.remove('border-transparent');
+            } else {
+                navbar.classList.remove('glass-nav');
+                navbar.classList.add('border-transparent');
+            }
+        });
+
+        // Mobile Menu Logic
+        const btnOpen = document.getElementById('open-menu');
+        const btnClose = document.getElementById('close-menu');
+        const menu = document.getElementById('mobile-menu');
+        const links = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            menu.classList.toggle('translate-x-full');
+        }
+
+        btnOpen.addEventListener('click', toggleMenu);
+        btnClose.addEventListener('click', toggleMenu);
+
+        links.forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+
+        // Animations
+        const tl = gsap.timeline();
+        tl.from(".gs-reveal", {
+            y: 30,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.15,
+            ease: "power3.out"
+        });
+
+        gsap.utils.toArray('.feature-card').forEach((card, i) => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: "#about",
+                    start: "top 80%",
+                },
+                y: 50,
+                opacity: 0,
+                duration: 0.8,
+                delay: i * 0.1,
+                ease: "back.out(1.7)"
+            });
+        });
+
+        // Testimonial Animations
+        gsap.utils.toArray('.gs-testimonial').forEach((item, i) => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: "#testimonials",
+                    start: "top 85%",
+                },
+                y: 30,
+                opacity: 0,
+                duration: 1,
+                stagger: 0.2,
+                delay: i * 0.1,
+                ease: "power3.out"
+            });
+        });
+
+        // Scroll Top Logic
+        const scrollTopBtn = document.getElementById('scroll-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+
+</html>
